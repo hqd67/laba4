@@ -1,10 +1,14 @@
-namespace laba4
+using System.Windows.Forms;
+
+namespace OnlineWhiteboard
 {
-    public partial class Form1 : Form
+    public class Form1 : Form
     {
         public Form1()
         {
-            InitializeComponent();
+            Text = "Online Whiteboard";
+            Width = 900;
+            Height = 600;
         }
     }
 }
