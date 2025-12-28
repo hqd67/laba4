@@ -3,6 +3,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Text.Json;
+using System.Threading.Tasks;
 
 namespace OnlineWhiteboard.Network
 {
@@ -37,7 +38,9 @@ namespace OnlineWhiteboard.Network
             {
                 int bytes = await stream.ReadAsync(buffer, 0, buffer.Length);
                 if (bytes == 0) break;
-                OnMessage?.Invoke(Encoding.UTF8.GetString(buffer, 0, bytes));
+
+                string json = Encoding.UTF8.GetString(buffer, 0, bytes);
+                OnMessage?.Invoke(json);
             }
         }
 

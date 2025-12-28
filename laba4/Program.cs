@@ -1,4 +1,3 @@
-using laba4;
 using System;
 using System.Windows.Forms;
 
