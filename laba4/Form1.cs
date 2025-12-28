@@ -1,4 +1,4 @@
-using OnlineWhiteboard.Models;
+﻿using OnlineWhiteboard.Models;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
@@ -60,5 +60,35 @@ namespace OnlineWhiteboard
             graphics.DrawEllipse(pen, e.X, e.Y, 2, 2);
             pictureBox.Invalidate();
         }
+
+        void CreateToolbar()
+        {
+            Panel panel = new Panel
+            {
+                Height = 50,
+                Dock = DockStyle.Top
+            };
+            Controls.Add(panel);
+
+            Button btnPen = NewButton("✏️", (s, e) => currentTool = DrawTool.Pen);
+            Button btnLine = NewButton("📏", (s, e) => currentTool = DrawTool.Line);
+            Button btnRect = NewButton("⬛", (s, e) => currentTool = DrawTool.Rectangle);
+            Button btnEllipse = NewButton("⚪", (s, e) => currentTool = DrawTool.Ellipse);
+            Button btnColor = NewButton("Цвет", ColorClick);
+            Button btnClear = NewButton("Очистить", ClearClick);
+
+            panel.Controls.AddRange(new Control[]
+            {
+        btnPen, btnLine, btnRect, btnEllipse, btnColor, btnClear
+            });
+
+            int x = 5;
+            foreach (Control c in panel.Controls)
+            {
+                c.Location = new Point(x, 10);
+                x += c.Width + 5;
+            }
+        }
+
     }
 }
